@@ -1,0 +1,15 @@
+{
+  "name": "full-gaali-bot",
+  "version": "1.0.0",
+  "description": "A special bot created for fun or to counter scammers.",
+  "main": "api/index.js",
+  "scripts": {
+    "start": "node api/index.js"
+  },
+  "dependencies": {
+    "telegraf": "^4.15.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
