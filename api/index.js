@@ -3,7 +3,7 @@ const { Telegraf } = require('telegraf');
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
 bot.on('text', async (ctx) => {
-  await ctx.reply('Under Development');
+  await ctx.reply('Under Development.');
 });
 
 bot.catch((err, ctx) => {
