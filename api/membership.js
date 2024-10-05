@@ -5,8 +5,8 @@ const checkMembership = async (ctx, next) => {
     try {
         const channelUsername = process.env.CHANNEL_USERNAME;
         if (!channelUsername) {
-            console.error('Channel username not found in environment variables.');
-            await ctx.reply('Internal error. Please try again later.');
+            console.error('Channel Username Not Found In Environment Variables.');
+            await ctx.reply('Internal Error. Please Try Again Later.');
             return;
         }
 
@@ -18,8 +18,8 @@ const checkMembership = async (ctx, next) => {
 
         if (!isMember) {
             await ctx.reply(
-                '⚠️ Please join our channel to use the bot!\n\n' +
-                'Click the button below to join:',
+                '⚠️ Please Join Our Channel To Use The Bot!\n\n' +
+                'Click The Button Below To Join 👇',
                 {
                     reply_markup: {
                         inline_keyboard: [
@@ -33,8 +33,8 @@ const checkMembership = async (ctx, next) => {
 
         return next();
     } catch (error) {
-        console.error('Error checking membership:', error);
-        await ctx.reply('Error checking channel membership.');
+        console.error('Error Checking Membership:', error);
+        await ctx.reply('Internal Error. Please Try Again Later.');
     }
 };
 
