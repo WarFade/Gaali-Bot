@@ -1,14 +1,13 @@
-const { Markup } = require('telegraf');
 const { Telegraf } = require('telegraf');
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
-const checkMembership = async (ctx) => {
+const checkMembership = async (ctx, next) => {
     try {
         const channelUsername = process.env.CHANNEL_USERNAME;
         if (!channelUsername) {
             console.error('Channel username not found in environment variables.');
             await ctx.reply('Internal error. Please try again later.');
-            return false;
+            return;
         }
 
         // Get Chat Member Info
@@ -29,23 +28,14 @@ const checkMembership = async (ctx) => {
                     }
                 }
             );
-            return false;
+            return;
         }
 
-        return true;
+        return next();
     } catch (error) {
         console.error('Error checking membership:', error);
         await ctx.reply('Error checking channel membership.');
-        return false;
     }
 };
-
-// Check Membership Before Executing Commands
-bot.use(async (ctx, next) => {
-    const isMember = await checkMembership(ctx);
-    if (isMember) {
-        return next();
-    }
-});
 
 module.exports = { checkMembership };
