@@ -17,9 +17,9 @@ const checkMembership = async (ctx, next) => {
         const isMember = ['creator', 'administrator', 'member'].includes(member.status);
 
         if (!isMember) {
-            await ctx.reply(
-                '⚠️ Please Join Our Channel To Use The Bot!\n\n' +
-                'Click The Button Below To Join 👇',
+            await ctx.replyWithMarkdown(
+                '*⚠️ Please Join Our Channel To Use The Bot!*\n\n' +
+                '*Click The Button Below To Join 👇*',
                 {
                     reply_markup: {
                         inline_keyboard: [
