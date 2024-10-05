@@ -5,12 +5,8 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 
 bot.use(checkMembership);
 
-bot.command('start', async (ctx) => {
-    await ctx.reply('Under Development');
-});
-
 bot.on('text', async (ctx) => {
-    await ctx.reply('Under Development');
+    await ctx.reply('Under Development.');
 });
 
 bot.catch((err, ctx) => {
@@ -29,6 +25,6 @@ module.exports = async (request, response) => {
         response.status(200).json({ message: 'Success' });
     } catch (error) {
         console.error('Error In Webhook Handler:', error);
-        response.status(500).json({ error: 'Failed To Process Update' });
+        response.status(500).json({ error: 'Failed To Process Update.' });
     }
 };
