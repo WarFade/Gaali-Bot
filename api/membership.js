@@ -1,6 +1,3 @@
-const { Telegraf } = require('telegraf');
-const bot = new Telegraf(process.env.BOT_TOKEN);
-
 const checkMembership = async (ctx, next) => {
     try {
         const channelUsername = process.env.CHANNEL_USERNAME;
@@ -28,13 +25,14 @@ const checkMembership = async (ctx, next) => {
                     }
                 }
             );
-            return;
+            return false;
         }
 
-        return next();
+        return true;
     } catch (error) {
         console.error('Error Checking Membership:', error);
         await ctx.reply('Internal Error. Please Try Again Later.');
+        return false;
     }
 };
 
