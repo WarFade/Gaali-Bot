@@ -3,7 +3,14 @@ const { checkMembership } = require('./membership');
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
-bot.use(checkMembership);
+bot.use(async (ctx, next) => {
+  if (!ctx.message && !ctx.callbackQuery) return next();
+
+  const isMember = await checkMembership(ctx);
+  if (isMember) {
+    return next();
+  }
+});;
 
 bot.on('text', async (ctx) => {
     await ctx.reply('Under Development.');
